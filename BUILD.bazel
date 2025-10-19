@@ -8,44 +8,64 @@ load("@bazel_skylib//rules:expand_template.bzl", "expand_template")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 load("//bazel:gen_targets.bzl", "gen_cc_tests")
 
-bool_flag(name = "bzip2", build_setting_default = False, visibility = ["//visibility:public"])
+bool_flag(
+    name = "bzip2",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
 
 config_setting(
     name = "use_bzip2",
     flag_values = {":bzip2": "True"},
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
 )
 
-bool_flag(name = "liburing", build_setting_default = False, visibility = ["//visibility:public"])
+bool_flag(
+    name = "liburing",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
 
 config_setting(
     name = "use_liburing",
     flag_values = {":liburing": "True"},
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
 )
 
-bool_flag(name = "lz4", build_setting_default = False, visibility = ["//visibility:public"])
+bool_flag(
+    name = "lz4",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
 
 config_setting(
     name = "use_lz4",
     flag_values = {":lz4": "True"},
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
 )
 
-bool_flag(name = "zlib", build_setting_default = False, visibility = ["//visibility:public"])
+bool_flag(
+    name = "zlib",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
 
 config_setting(
     name = "use_zlib",
     flag_values = {":zlib": "True"},
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
 )
 
-bool_flag(name = "zstd", build_setting_default = False, visibility = ["//visibility:public"])
+bool_flag(
+    name = "zstd",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
 
 config_setting(
     name = "use_zstd",
     flag_values = {":zstd": "True"},
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
 )
 
 OS_DEFINES = select({
@@ -72,12 +92,12 @@ OS_DEFINES = select({
         "WIN32",
         "WIN64",
     ],
-    "//conditions:default": []
+    "//conditions:default": [],
 })
 
 FEATURE_DEFINES = select({
     ":use_bzip2": ["BZIP2"],
-    "//conditions:default": []
+    "//conditions:default": [],
 }) + select({
     ":use_liburing": ["ROCKSDB_IOURING_PRESENT"],
     "//conditions:default": [],
@@ -95,18 +115,18 @@ FEATURE_DEFINES = select({
 expand_template(
     name = "build_version_cc",
     out = "util/build_version.cc",
-    template = "util/build_version.cc.in",
     substitutions = {
         # Just leave these blank, they don't matter as much for Bazel, and
         # people will forget to update them if we put in the actual values.
         "@BUILD_DATE@": "",
-        "@GIT_SHA@": "",
-        "@GIT_TAG@": "",
         "@GIT_DATE@": "",
         "@GIT_MOD@": "0",
-        "@ROCKSDB_PLUGIN_EXTERNS@": "",
+        "@GIT_SHA@": "",
+        "@GIT_TAG@": "",
         "@ROCKSDB_PLUGIN_BUILTINS@": "",
-    }
+        "@ROCKSDB_PLUGIN_EXTERNS@": "",
+    },
+    template = "util/build_version.cc.in",
 )
 
 cc_library(
@@ -318,7 +338,6 @@ cc_library(
         "table/cuckoo/cuckoo_table_builder.cc",
         "table/cuckoo/cuckoo_table_factory.cc",
         "table/cuckoo/cuckoo_table_reader.cc",
-        "table/external_table_reader.cc",
         "table/format.cc",
         "table/get_context.cc",
         "table/iterator.cc",
