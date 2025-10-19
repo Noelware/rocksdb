@@ -1,3 +1,9 @@
+**This is Noelware's fork that adds Bazel as another build system to build RocksDB. This is used by Noelware's [Eous project](https://github.com/Noelware/Eous)**.
+
+This extends the Bazel Central Registry's version of RocksDB that is up-to-date.
+
+---
+
 ## RocksDB: A Persistent Key-Value Store for Flash and RAM Storage
 
 [![CircleCI Status](https://circleci.com/gh/facebook/rocksdb.svg?style=svg)](https://circleci.com/gh/facebook/rocksdb)
