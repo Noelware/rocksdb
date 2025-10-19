@@ -106,3 +106,4 @@ third-party/folly/
 # Bazel-related
 **/bazel-*
 **/external
+**/.direnv
