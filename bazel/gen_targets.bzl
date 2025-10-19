@@ -17,7 +17,7 @@ def gen_cc_tests(srcs):
         cc_test(
             name = name,
             srcs = [src],
-            deps = [":rocksdb_test_lib"],
+            deps = [":test_lib"],
             linkopts = ["-ldl"],  # for Debian
             timeout = "long",
         )

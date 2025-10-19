@@ -1,1 +1,0 @@
-export_files(["gen_targets.bzl"])
